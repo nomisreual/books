@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="scroll_horizontal">
+    <div class="flex-container" id="flexContainer">
+      {% for dictionary in data %}
+      <div class="flex-item">
+        <p>
+        <!-- Looking for exception: -->
+          {% if 'Title' in dictionary %}
+            <p class="center">{{ dictionary.Title }}</p>
+          {% endif %}
+          <!-- Creating  -->
+          {% for key, value in dictionary.items() %}
+            {% if key != 'Title' %}
+              <p><b>{{key}}:</b> {{ value }}</p>
+            {% endif %}
+          {% endfor %}
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

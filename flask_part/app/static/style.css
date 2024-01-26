@@ -1,0 +1,24 @@
+
+.scroll_horizontal {
+    flex: 1;
+    width: 1600px;
+    height: 400px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.center {
+    margin: auto;
+    text-align: center;
+    text-decoration: underline;
+}
+.flex-container {
+    display: flex;
+}
+
+.flex-item {
+    background-color: lightblue;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #000;
+}

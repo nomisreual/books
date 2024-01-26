@@ -1,0 +1,8 @@
+<!-- For rendering the search results requested -->
+{% for result in results %}
+<tr>
+    <td>{{ result.title }}</td>
+    <td>{{ result.author.fullname }}</td>
+    <td>{{ result.year }}</td>
+</tr>
+{% endfor %}
