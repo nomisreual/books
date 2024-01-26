@@ -11,15 +11,6 @@
 
   </head>
   <body>
-    <h1> Search for a Book:</h1>
-    <!-- <div>Books Data-Base: <a href="/index">Home</a> <a href="/books">Books</a> <a href="/authors">Authors</a><a href="/books_table">Books Table</a></div> -->
-
-    <!-- Search bar: -->
-    <div>
-      <input type="text" placeholder="HTMX powered search..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results">
-    </div>
-
-    <hr />
 
     <!-- Content block -->
     {% block content %}{% endblock %}

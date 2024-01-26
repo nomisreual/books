@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1> Search for a Book:</h1>
+
+<!-- Search bar: -->
+<div>
+  <input type="text" placeholder="HTMX powered search..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results">
+</div>
+
+<hr />
 <table>
     <thead>
         <tr>
