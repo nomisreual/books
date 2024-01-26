@@ -2,24 +2,25 @@
 <html>
   <head>
     {% if title %}
-    <title>{{ title }} - Book Data-Base</title>
+    <title>{{ title }}</title>
     {% else %}
-    <title>Welcome to Book Data-Base</title>
+    <title>Welcome</title>
     {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
 
   </head>
   <body>
-    <div>Books Data-Base: <a href="/index">Home</a> <a href="/books">Books</a> <a href="/authors">Authors</a><a href="/books_table">Books Table</a></div>
-    <hr />
+    <h1> Search for a Book:</h1>
+    <!-- <div>Books Data-Base: <a href="/index">Home</a> <a href="/books">Books</a> <a href="/authors">Authors</a><a href="/books_table">Books Table</a></div> -->
+
     <!-- Search bar: -->
-    <div>
-      <input type="text" id="searchInput" placeholder="Search..." oninput="searchBooks()">
-    </div>
     <div>
       <input type="text" placeholder="HTMX powered search..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results">
     </div>
+
+    <hr />
+
     <!-- Content block -->
     {% block content %}{% endblock %}
     

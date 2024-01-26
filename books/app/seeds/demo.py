@@ -1,4 +1,4 @@
-from app import db
+# from app import db
 from models import Book, Author, Publisher, Address
 from faker import Faker
 from flask_seeder import Seeder
@@ -13,7 +13,7 @@ class DemoSeeder(Seeder):
         print("Start seeding...")
         # Populate the database with fake entries:
         for _ in range(10000):
-            db.session.add(
+            self.db.session.add(
                 Book(
                     title=fake.unique.sentence(nb_words=4),
                     year=fake.date_time().year,
@@ -23,7 +23,7 @@ class DemoSeeder(Seeder):
                         birthdate=fake.date_time()
                     )
                 ))
-            db.session.add(
+            self.db.session.add(
                 Publisher(
                     name=fake.unique.company(),
                     address=Address(
@@ -32,4 +32,4 @@ class DemoSeeder(Seeder):
                         postal_code=fake.postcode()
                     )
                 ))
-            db.session.commit()
+            # db.session.commit()
