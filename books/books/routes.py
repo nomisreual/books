@@ -1,19 +1,17 @@
-from flask import render_template, request, redirect, url_for
-from app import app
-from app.models import Book
-# import sqlalchemy as sa
-# import sqlalchemy.orm as so
+from flask import Blueprint, render_template, request
+from data.models import Book
+
+books = Blueprint("books", __name__, template_folder="templates")
 
 
-@app.route("/")
-@app.route("/index")
+@books.route("/")
 def books_table():
     return render_template("index.html",
                            title="Welcome to Bucks - a Book Database")
 
 
 # API endpoint that returns HTML
-@app.route('/search')
+@books.route('/search')
 def search():
     q = request.args.get("q")
     if q:

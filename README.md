@@ -14,10 +14,37 @@ This is a simple webpage that allows the user to search for books by, e.g. tile 
 - Add filter options for search (maybe also what is displayed).
 - Redirects to pages with details about a specific book or author.
 
-### For contributors and the curious:
 
-## Connecting to a local postgreSQL database:
-Create a file in ./books and ./data called *database.env* setting the following environmental variable:
-*SQLALCHEMY_DATABASE_URI*
+## Local Set Up
 
-The value should be set like this: *postgresql://username:password@host/database_name*
+Clone the repository and cd into the newly created directory.
+
+Create a virtual environment, activate it an install the requirements:
+
+```
+python -m venv .venv
+source ./.venv/bin/activate
+pip install -r requirements
+```
+
+After that you can run the application using the following command:
+
+```
+flask run
+```
+
+Out of the box, this application runs off of an in-memory SQLite database. To use another database, create a folder called *instance* in the project's root directory. Alternatively, you can run the application once as the folder will then be created if it does not exist.
+
+In this folder, create a file called *config.py* and add one line setting the *SQLALCHEMY_DATABASE_URI*. For using a an on-disk SQLite database, the contents of *config.py* would look like this:
+
+```
+SQLALCHEMY_DATABASE_URI = "sqlite:///app.db"
+```
+
+After that there is one more command to actually set up the needed tables in the database:
+
+```
+flask db upgrade
+```
+
+Note: in case of SQLite, this command also creates the database file before creating the tables. Conveniently, the created database SQLite database is stored in the same *instance* folder and as such excluded from version control.

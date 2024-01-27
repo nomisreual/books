@@ -1,7 +1,12 @@
+from app import create_app
+
 import sqlalchemy as sa
 import sqlalchemy.orm as so
-from app import app, db
-from app.models import Book, Author, Publisher, Address
+
+from data.models import Book, Author, Publisher, Address
+from data.models import db
+
+app = create_app()
 
 
 @app.shell_context_processor

@@ -4,14 +4,13 @@ from sqlalchemy import ForeignKey, String, Integer, UniqueConstraint, \
 from sqlalchemy.orm import Mapped, \
     mapped_column, relationship
 from datetime import datetime
-from app import db
 
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
-# class Base(DeclarativeBase):
-#     pass
+db = SQLAlchemy()
+migrate = Migrate()
 
-# Association table connecting the authors and publisher table
-# Hence, facilitating the many-to-many relationship
 authorpublisher = Table(
     "authorpublisher",
     db.metadata,

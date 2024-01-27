@@ -1,10 +1,7 @@
 venv
-*.env
-*.env.bak
 .venv
+*.env
 __pycache__
-./data/__pycache__/
-./data/app.db
 .DS_Store
 *.pyc
-*.db
+instance/
