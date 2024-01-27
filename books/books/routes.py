@@ -26,5 +26,4 @@ def search():
     else:
         results = []
 
-    print(results)
     return render_template("search_results.html", results=results)
