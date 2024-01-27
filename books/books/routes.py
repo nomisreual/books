@@ -8,12 +8,19 @@ books = Blueprint("books", __name__, template_folder="templates")
 
 
 @books.route("/")
-def books_table():
+def index():
     return render_template("index.html",
                            title="Welcome to Bucks - a Book Database")
 
 
+@books.route("/book_details")
+def books_details():
+    book_id = request.args.get()
+    return render_template("book_details.html", book_id=book_id)
+
 # API endpoint that returns HTML
+
+
 @books.route('/search')
 def search():
     q = request.args.get("q")
