@@ -11,7 +11,7 @@ This is a simple webpage that allows the user to search for books by, e.g. tile 
 
 ## Planned features:
 - [x] Improve search functionality and performance on landing page.
-- [ ]Add filter options for search:
+- [ ] Add filter options for search:
     - precision of search (perfect match vs loose match)
 - [ ] Redirects to pages with details about a specific book or author.
 - [ ] Filling the database with more real data (in development a database with 10 000 records of dummy data is in use).
