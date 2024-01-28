@@ -20,6 +20,14 @@ def book_details(id):
 
     return render_template("books/book_details.html", result=result)
 
+
+@books.route("/author_details/<int:id>")
+def author_details(id):
+    query = sa.select(Author).where(Author.id == id)
+    result = db.session.scalars(query).all()[0]
+
+    return render_template("books/author_details.html", result=result)
+
 # API endpoint that returns HTML
 
 
