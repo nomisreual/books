@@ -8,19 +8,8 @@
   <input type="text" placeholder="Search for a book..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results">
 </div>
 
-<!-- <a href="{{ url_for('.books_details') }}">Details</a> -->
 <hr />
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Published in</th>
-        </tr>
-    </thead>
-    <tbody id="results">
-
-    </tbody>
+<table id="results">
 </table>
 {% endblock %}
 

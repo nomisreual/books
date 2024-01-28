@@ -14,7 +14,7 @@ def index():
 
 
 @books.route("/book_details")
-def books_details():
+def book_details():
     return render_template("books/book_details.html")
 
 # API endpoint that returns HTML
