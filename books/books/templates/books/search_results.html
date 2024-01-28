@@ -10,7 +10,7 @@
 <tbody>
 {% for result in results %}
 <tr>
-    <td><a href="{{ url_for('.book_details') }}">{{ result.title }}</a></td>
+    <td><a href="{{ url_for('.book_details', id=result.id) }}">{{ result.title }}</a></td>
     <td>{{ result.author.fullname }}</td>
     <td>{{ result.year }}</td>
 </tr>

@@ -13,9 +13,12 @@ def index():
                            title="Welcome to Bucks - a Book Database")
 
 
-@books.route("/book_details")
-def book_details():
-    return render_template("books/book_details.html")
+@books.route("/book_details/<int:id>")
+def book_details(id):
+    query = sa.select(Book).where(Book.id == id)
+    result = db.session.scalars(query).all()[0]
+
+    return render_template("books/book_details.html", result=result)
 
 # API endpoint that returns HTML
 
