@@ -1,6 +1,6 @@
-from csv_importer import read_csv
+# from csv_importer import read_csv
 from data_models import Base, Book, Author, Publisher, Address
-from datetime import datetime
+# from datetime import datetime
 from faker import Faker
 
 from sqlalchemy import create_engine

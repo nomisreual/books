@@ -10,10 +10,19 @@ This is learning project in which I broaden my knowledge in various topics such 
 This is a simple webpage that allows the user to search for books by, e.g. tile and name of the author. For each book, the user can access additional ressurces. For example, what other books have been authored by this author?
 
 ## Planned features:
-- Improve search functionality and performance on landing page.
-- Add filter options for search (maybe also what is displayed).
-- Redirects to pages with details about a specific book or author.
+- [x] Improve search functionality and performance on landing page.
+- [ ]Add filter options for search:
+    - precision of search (perfect match vs loose match)
+- [ ] Redirects to pages with details about a specific book or author.
+- [ ] Filling the database with more real data (in development a database with 10 000 records of dummy data is in use).
 
+Checked off features already made it into the application.
+
+## Possible features:
+- User login system to facilitate bookmarking certain books, or follow authors.
+
+## Maybe features:
+- Build a flask extension that eases prepopulating a database with real or fake data. It should also allow for an easy database teardown (deleting all records across tables).
 
 ## Local Set Up
 
