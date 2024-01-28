@@ -1,0 +1,15 @@
+<!-- For rendering the search results requested -->
+<tr>
+    <td><a href="{{ url_for('.books_details') }}">One</a></td>
+    <td><a href="{{ url_for('.books_details') }}">One</a></td>
+    <td><a href="{{ url_for('.books_details') }}">One</a></td>
+</tr>
+
+{% for result in results %}
+<!-- <a href="{{ url_for('.books_details') }}">Details</a> -->
+<tr>
+    <td><a href="{{ url_for('.books_details') }}">{{ result.title }}</a></td>
+    <td>{{ result.author.fullname }}</td>
+    <td>{{ result.year }}</td>
+</tr>
+{% endfor %}
