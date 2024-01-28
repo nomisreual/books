@@ -40,13 +40,14 @@ Create a virtual environment, activate it an install the requirements:
 ```
 python -m venv .venv
 source ./.venv/bin/activate
-pip install -r requirements
+pip install -r requirements.txt
 ```
 
-If you run into issues not being able to install *psycopg2*, consider removing it from *requirements.txt* and install the following manually (as this does not require depencies for compilation):
+If you run into issues not being able to install *psycopg2*, consider removing it from *requirements.txt* and install the following manually (as this does not require depencies for compilation). And install the requirements again:
 
 ```
 pip install psycopg2-binary
+pip install -r requirements.txt
 ```
 
 After that you can run the application using the following command:
