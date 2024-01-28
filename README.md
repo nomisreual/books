@@ -29,7 +29,11 @@ Checked off features already made it into the application.
 
 ## Local Set Up
 
-Clone the repository and cd into the newly created directory.
+Clone the repository and cd into the newly created directory. And from there into the flask app subfolder.
+
+```
+cd ./books/books
+```
 
 Create a virtual environment, activate it an install the requirements:
 
@@ -37,6 +41,12 @@ Create a virtual environment, activate it an install the requirements:
 python -m venv .venv
 source ./.venv/bin/activate
 pip install -r requirements
+```
+
+If you run into issues not being able to install *psycopg2*, consider removing it from *requirements.txt* and install the following manually (as this does not require depencies for compilation):
+
+```
+pip install psycopg2-binary
 ```
 
 After that you can run the application using the following command:
