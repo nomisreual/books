@@ -16,7 +16,7 @@ This is a simple webpage that allows the user to search for books by, e.g. tile 
 - [x] Improve search functionality and performance on landing page.
 - [ ] Add filter options for search:
     - precision of search (perfect match vs loose match)
-- [ ] Redirects to pages with details about a specific book or author.
+- [x] Redirects to pages with details about a specific book or author.
 - [ ] Filling the database with more real data (in development a database with 10 000 records of dummy data is in use).
 
 Checked off features already made it into the application.
@@ -43,20 +43,14 @@ source ./.venv/bin/activate
 pip install -r requirements.txt
 ```
 
-If you run into issues not being able to install *psycopg2*, consider removing it from *requirements.txt* and install the following manually (as this does not require depencies for compilation). And install the requirements again:
+Out of the box, this application runs off of an on-disk SQLite database. To use another database, do the following: create a file called *database.env* inside of the *instance* folder and include a line setting *PRODUCTION_DATABASE". The *instance* is created whenever the first *flask* command is called. Alternatively, just create it to make sure you use your database and proceed with the next steps afterwards:
 
 ```
-pip install psycopg2-binary
-pip install -r requirements.txt
+mkdir instance
+echo PRODUCTION_DATABASE=sqlite:///example.db > ./instance/database.env
 ```
 
-Out of the box, this application runs off of an on-disk SQLite database. To use another database, create a folder called *instance* in the project's root directory. Alternatively, you can run the application once as the folder will then be created if it does not exist.
-
-In this folder, create a file called *config.py* and add one line setting the *SQLALCHEMY_DATABASE_URI*. For using a an on-disk SQLite database (default already set), the contents of *config.py* would look like this:
-
-```
-SQLALCHEMY_DATABASE_URI = "sqlite:///app.db"
-```
+The example above sets the production database key to use a SQLite database. You can use any other relational database that is supported by SQLAlchemy.
 
 After that, create the database tables with this command:
 
