@@ -13,10 +13,8 @@ def create_app(test_config=None):
 
     @app.cli.command("seeding")
     def seeding():
-        from data.seed import seed_database
-        print("Begin seeding...")
+        from data.seeding import seed_database
         seed_database()
-        print("Seeding the database is complete!")
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -39,8 +37,5 @@ def create_app(test_config=None):
     from extensions import db, migrate
     db.init_app(app)
     migrate.init_app(app, db)
-
-    # with app.app_context():
-    #     db.create_all()
 
     return app

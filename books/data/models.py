@@ -70,7 +70,8 @@ class Publisher(db.Model):
         back_populates="publishers"
     )
 
-    address: Mapped["Address"] = relationship(back_populates="publisher")
+    address: Mapped["Address"] = relationship(back_populates="publisher",
+                                              cascade="all, delete-orphan")
 
     def __repr__(self) -> str:
         return f"Publisher(id={self.id!r}, \
