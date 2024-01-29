@@ -1,6 +1,6 @@
 # Books
 
-This is learning project in which I broaden my knowledge in various topics such as:
+This is a learning project in which I broaden my knowledge in various topics such as:
 - Working with databases and utilizing ORMs to integrate them neatly into a web application.
 - Building web applications with the Flask framework with an emphasis on data handling and building APIs
 - Cherry on top: HTMX for fast implementation of useful frontend features.
