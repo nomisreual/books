@@ -29,10 +29,10 @@ Checked off features already made it into the application.
 
 ## Local Set Up
 
-Clone the repository and cd into the newly created directory. And from there into the flask app subfolder.
+Clone the repository and cd into the newly created directory. 
 
 ```
-cd ./books/books
+cd ./books/
 ```
 
 Create a virtual environment, activate it an install the requirements:
@@ -50,24 +50,31 @@ pip install psycopg2-binary
 pip install -r requirements.txt
 ```
 
-After that you can run the application using the following command:
+Out of the box, this application runs off of an on-disk SQLite database. To use another database, create a folder called *instance* in the project's root directory. Alternatively, you can run the application once as the folder will then be created if it does not exist.
 
-```
-flask run
-```
-
-Out of the box, this application runs off of an in-memory SQLite database. To use another database, create a folder called *instance* in the project's root directory. Alternatively, you can run the application once as the folder will then be created if it does not exist.
-
-In this folder, create a file called *config.py* and add one line setting the *SQLALCHEMY_DATABASE_URI*. For using a an on-disk SQLite database, the contents of *config.py* would look like this:
+In this folder, create a file called *config.py* and add one line setting the *SQLALCHEMY_DATABASE_URI*. For using a an on-disk SQLite database (default already set), the contents of *config.py* would look like this:
 
 ```
 SQLALCHEMY_DATABASE_URI = "sqlite:///app.db"
 ```
 
-After that there is one more command to actually set up the needed tables in the database:
+After that, create the database tables with this command:
 
 ```
 flask db upgrade
 ```
 
 Note: in case of SQLite, this command also creates the database file before creating the tables. Conveniently, the created database SQLite database is stored in the same *instance* folder and as such excluded from version control.
+
+Prepolutating the database with dummy data using the following command:
+
+```
+flask seeding
+```
+
+After that you can run the application using the following command:
+
+```
+flask run
+```
+
