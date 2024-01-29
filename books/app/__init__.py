@@ -8,8 +8,15 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        SQLALCHEMY_DATABASE_URI="sqlite://"
+        SQLALCHEMY_DATABASE_URI="sqlite:///app.db"
     )
+
+    @app.cli.command("seeding")
+    def seeding():
+        from data.seed import seed_database
+        print("Begin seeding...")
+        seed_database()
+        print("Seeding the database is complete!")
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
