@@ -1,7 +1,6 @@
 import os
 
 from flask import Flask
-from books.routes import books
 
 
 def create_app(test_config=None):
@@ -26,10 +25,11 @@ def create_app(test_config=None):
         pass
 
     # Register blueprints
+    from books.routes import books
     app.register_blueprint(books)
 
     # Database
-    from data.models import db, migrate
+    from extensions import db, migrate
     db.init_app(app)
     migrate.init_app(app, db)
 

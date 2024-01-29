@@ -5,11 +5,7 @@ from sqlalchemy.orm import Mapped, \
     mapped_column, relationship
 from datetime import datetime
 
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-
-db = SQLAlchemy()
-migrate = Migrate()
+from extensions import db
 
 authorpublisher = Table(
     "authorpublisher",
