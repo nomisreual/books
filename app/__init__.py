@@ -1,19 +1,33 @@
-import os
-
 from flask import Flask
+import os
+import dotenv
+from data.seeding import seed_database
+from books.routes import books
+from extensions import db, migrate
 
 
 def create_app(test_config=None):
+
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+
+    # Load environmental variables:
+    # dotenv.load_dotenv("../instance/database.env")
+    DOTENV_BASEDIR = os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                                  os.pardir, "instance"))
+    dotenv.load_dotenv(os.path.join(DOTENV_BASEDIR, "database.env"))
+
+    # Set up Keys:
     app.config.from_mapping(
-        SECRET_KEY='dev',
-        SQLALCHEMY_DATABASE_URI="sqlite:///app.db"
+        SECRET_KEY=os.getenv("SECRET_KEY") or 'dev',
+        SQLALCHEMY_DATABASE_URI=os.getenv("DEPLOYMENT_DATABASE") or
+        os.getenv("PRODUCTION_DATABASE") or
+        "sqlite:///app.db"
     )
 
+    # Configure custom command "flask seeding"
     @app.cli.command("seeding")
     def seeding():
-        from data.seeding import seed_database
         seed_database()
 
     if test_config is None:
@@ -30,11 +44,9 @@ def create_app(test_config=None):
         pass
 
     # Register blueprints
-    from books.routes import books
     app.register_blueprint(books)
 
     # Database
-    from extensions import db, migrate
     db.init_app(app)
     migrate.init_app(app, db)
 
