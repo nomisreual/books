@@ -25,7 +25,7 @@ Checked off features already made it into the application.
 - User login system to facilitate bookmarking certain books, or follow authors.
 
 ## Maybe features:
-- Build a flask extension that eases prepopulating a database with real or fake data. It should also allow for an easy database teardown (deleting all records across tables).
+- Build a flask extension that eases prepopulating a database with real or fake data. It should also allow for an easy database teardown (deleting all records across tables). [Update: 29.01.2024] So far I created a custom flask command called *flask seeding* to make it easier for this project.
 
 ## Local Set Up
 
