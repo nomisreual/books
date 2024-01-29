@@ -88,8 +88,8 @@ class Address(db.Model):
     publisher_id: Mapped[int] = mapped_column(ForeignKey("publishers.id"))
 
     # below: not an actual table column
-    publisher: Mapped["Publisher"] = relationship(back_populates="address",
-                                                  single_parent=True)
+    # publisher: Mapped["Publisher"] = relationship(back_populates="address",
+    #                                               single_parent=True)
     # single_parent: to make clear that this is a 1-to-1 relationship
 
     # additional setting to make the 1-to-1 relationship clearer
