@@ -42,4 +42,4 @@ def search():
     else:
         results = []
 
-    return render_template("main/search_results.html", results=results)
+    return render_template("main/_search_results.html", results=results)
