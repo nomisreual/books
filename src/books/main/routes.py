@@ -4,34 +4,34 @@ import sqlalchemy as sa
 from sqlalchemy import or_
 from data.models import db
 
-books = Blueprint("books", __name__, template_folder="templates")
+main = Blueprint("main", __name__, template_folder="templates")
 
 
-@books.route("/")
+@main.route("/")
 def index():
-    return render_template("books/index.html",
+    return render_template("main/index.html",
                            title="Welcome to Bucks - a Book Database")
 
 
-@books.route("/book_details/<int:id>")
+@main.route("/book_details/<int:id>")
 def book_details(id):
     query = sa.select(Book).where(Book.id == id)
     result = db.session.scalars(query).all()[0]
 
-    return render_template("books/book_details.html", result=result)
+    return render_template("main/book_details.html", result=result)
 
 
-@books.route("/author_details/<int:id>")
+@main.route("/author_details/<int:id>")
 def author_details(id):
     query = sa.select(Author).where(Author.id == id)
     result = db.session.scalars(query).all()[0]
 
-    return render_template("books/author_details.html", result=result)
+    return render_template("main/author_details.html", result=result)
 
 # API endpoint that returns HTML
 
 
-@books.route('/search')
+@main.route('/search')
 def search():
     q = request.args.get("q")
     if q:
@@ -42,4 +42,4 @@ def search():
     else:
         results = []
 
-    return render_template("books/search_results.html", results=results)
+    return render_template("main/search_results.html", results=results)

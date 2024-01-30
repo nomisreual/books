@@ -2,7 +2,7 @@ from flask import Flask
 import os
 import dotenv
 from data.seeding import seed_database
-from books.routes import books
+from main.routes import main
 from extensions import db, migrate
 
 
@@ -44,7 +44,7 @@ def create_app(test_config=None):
         pass
 
     # Register blueprints
-    app.register_blueprint(books)
+    app.register_blueprint(main)
 
     # Database
     db.init_app(app)
