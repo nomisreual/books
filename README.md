@@ -69,7 +69,7 @@ After that, create the database tables with this command:
 flask db upgrade
 ```
 
-Note: in case of SQLite, this command also creates the database file before creating the tables. Conveniently, the created database SQLite database is stored in the same *instance* folder and as such excluded from version control.
+Note: in case of SQLite, this command also creates the database file before creating the tables. Conveniently, the created SQLite database is stored in the same *instance* folder and as such excluded from version control.
 
 Prepolutating the database with dummy data using the following command:
 
