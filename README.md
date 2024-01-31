@@ -74,10 +74,10 @@ Note: in case of SQLite, this command also creates the database file before crea
 Prepolutating the database with dummy data using the following command:
 
 ```
-flask seeding
+flask seeding <int:number>
 ```
 
-After that you can run the application using the following command:
+Here, *number* is the number of records you want to create across each table in the database. After that you can run the application using the following command:
 
 ```
 flask run
