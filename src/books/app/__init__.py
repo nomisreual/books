@@ -1,6 +1,7 @@
 from flask import Flask
 import os
 import dotenv
+import click
 from data.seeding import seed_database
 from main.routes import main
 from api.routes import api
@@ -29,8 +30,9 @@ def create_app(test_config=None):
 
     # Configure custom command "flask seeding"
     @app.cli.command("seeding")
-    def seeding():
-        seed_database()
+    @click.argument("number_of_arguments")
+    def seeding(number_of_arguments):
+        seed_database(number_of_arguments)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing

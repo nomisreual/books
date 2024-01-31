@@ -5,7 +5,7 @@ from .models import db
 from .models import Book, Author, Publisher, Address
 
 
-def seed_database():
+def seed_database(number_of_records: str) -> None:
     print("Beginning the seeding process.")
     # Create a faker instance:
     fake = Faker()
@@ -25,7 +25,7 @@ def seed_database():
         db.session.delete(result)
 
     print("Populating all tables...")
-    for _ in range(10000):
+    for _ in range(int(number_of_records)):
         db.session.add(
             Book(
                 title=fake.unique.sentence(nb_words=4),
