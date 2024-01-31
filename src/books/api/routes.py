@@ -44,8 +44,8 @@ def get_publishers():
     publishers_dictionary = {
         f"{publisher.id}": {
             "name": publisher.name,
-            "authors": [[author.id for author in authors]
-                        for authors in publishers.authors],
+            # "authors": [[author.id for author in authors]
+            #             for authors in publishers.authors],
             "address": publisher.address.id
         } for publisher in publishers
     }
