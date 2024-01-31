@@ -4,12 +4,17 @@
 <h1> Search for a Book:</h1>
 
 <!-- Search bar: -->
+{% if request.args.get('q') %}
+<div>
+  <input type="text" value="{{ request.args.get('q') }}" name="q" hx-get="/search" hx-trigger="load, keyup changed delay:500ms" hx-target="#results">
+</div>
+{% else %}
 <div>
   <input type="text" placeholder="Search for a book..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results">
 </div>
+{% endif %}
 
 <hr />
-<table id="results">
-</table>
+<div id="results">
+</div>
 {% endblock %}
-

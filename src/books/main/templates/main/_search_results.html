@@ -1,5 +1,6 @@
 <!-- For rendering the search results requested -->
 {% if results %}
+<table>
 <thead>
     <tr>
         <th>Title</th>
@@ -17,6 +18,14 @@
 </tr>
 {% endfor %}
 </tbody>
+</table>
+
+{% if prev_url %}
+<a href="{{ prev_url }}">Previous</a>
+{% endif %}
+{% if next_url %}
+<a href="{{ next_url }}">Next</a>
+{% endif %}
 {% else %}
 <p>We could not find anything. Please change your query.</p>
 {% endif %}
