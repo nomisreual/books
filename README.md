@@ -18,8 +18,7 @@ This is a simple webpage that allows the user to search for books by, e.g. tile 
     - precision of search (perfect match vs loose match)
 - [x] Redirects to pages with details about a specific book or author.
 - [ ] Filling the database with more real data (in development a database with 10 000 records of dummy data is in use,
-- [ ] Adding APIs making the data more accessible (*in progress, see down below*).
-the live demo currently has 500 records due to hosting limitations).
+- [ ] Adding APIs making the data more accessible (*in progress, see down below*). The live demo currently has 500 records due to hosting limitations).
 
 Checked off features already made it into the application.
 
@@ -31,7 +30,13 @@ Checked off features already made it into the application.
 
 ## APIs
 
-APIs are currently worked on. Every API is prefixed with `/api`. One API endpoint is already live, namely `/api/books` returning information about each book in the database in JSON format.
+APIs are currently worked on. Every API is prefixed with `/api`. 
+- Current endpoints:
+    - /authors -> list all authors
+    - /books -> list all books
+    - /authors/<int:id> -> grab author by id
+    - /books/<int:id> -> grab book by id
+
 
 ## Local Set Up
 
