@@ -12,10 +12,8 @@ def create_app(test_config=None):
 
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-                # template_folder="../templates")
 
     # Load environmental variables:
-    # dotenv.load_dotenv("../instance/database.env")
     DOTENV_BASEDIR = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                                   os.pardir, "instance"))
     dotenv.load_dotenv(os.path.join(DOTENV_BASEDIR, "database.env"))
