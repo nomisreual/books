@@ -1,29 +1,48 @@
 from faker import Faker
-# import sqlalchemy as sa
 from flask_migrate import upgrade, downgrade
-
 from .models import db
 from .models import Book, Author, Publisher, Address
+
+import os
+import sys
+from contextlib import contextmanager
+
+
+# Context manager to suppress output of function calls.
+@contextmanager
+def suppress_output():
+    # Save the original stdout and stderr
+    original_stdout = sys.stdout
+    original_stderr = sys.stderr
+
+    # Open /dev/null or NUL for writing
+    with open(os.devnull, 'w') as null:
+        # Redirect stdout and stderr to /dev/null or NUL
+        sys.stdout = null
+        sys.stderr = null
+        try:
+            # Yield control back to the caller
+            yield
+        finally:
+            # Restore stdout and stderr
+            sys.stdout = original_stdout
+            sys.stderr = original_stderr
 
 
 def seed_database(number_of_records: str) -> None:
     print("Beginning the seeding process.")
+
     # Create a faker instance:
     fake = Faker()
     Faker.seed(1)
-    downgrade()
-    upgrade()
 
-    # query = sa.select(Author)
-    # results = db.session.scalars(query)
-    # for result in results:
-    #     db.session.delete(result)
-    # # Delete all entries for Publisher. Automatically removes
-    # # entries for Address
-    # query = sa.select(Publisher)
-    # results = db.session.scalars(query)
-    # for result in results:
-    #     db.session.delete(result)
+    print("Deleting all records across all tables...")
+    # Use the suppress_output context manager to suppress output
+    # of downgrade() and upgrade()
+    with suppress_output():
+        # Downgrade to the base revision
+        downgrade(revision='base')
+        upgrade()
 
     print("Populating all tables...")
     for _ in range(int(number_of_records)):
@@ -46,6 +65,7 @@ def seed_database(number_of_records: str) -> None:
         publisher.address = address
         # Add objects to session:
         db.session.add_all([author, publisher, address])
+
     # Commit changes:
     db.session.commit()
     print("Seeding process complete!")
