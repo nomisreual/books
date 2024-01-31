@@ -1,4 +1,5 @@
 <!-- For rendering the search results requested -->
+{% if results %}
 <thead>
     <tr>
         <th>Title</th>
@@ -16,4 +17,6 @@
 </tr>
 {% endfor %}
 </tbody>
-
+{% else %}
+<p>We could not find anything. Please change your query.</p>
+{% endif %}
