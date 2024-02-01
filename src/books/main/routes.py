@@ -9,8 +9,15 @@ main = Blueprint("main", __name__, template_folder="templates")
 
 @main.route("/")
 def index():
-    return render_template("main/index.html",
-                           title="Welcome to Bucks - a Book Database")
+    q = request.args.get("q")
+    page = request.args.get("page")
+    if q and page:
+        return render_template("main/index.html",
+                               title="Welcome to Bucks - a Book Database",
+                               q=q, page=page)
+    else:
+        return render_template("main/index.html",
+                               title="Welcome to Bucks - a Book Database")
 
 
 @main.route("/book_details/<int:id>")
@@ -39,7 +46,6 @@ def search():
         query = sa.select(Book).join(Author) \
             .where(or_(Book.title.icontains(q),
                        Author.fullname.icontains(q)))
-        # results = db.session.scalars(query).all()
         results = db.paginate(query, page=page,
                               per_page=20, error_out=False)
         next_url = url_for("main.index",

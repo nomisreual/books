@@ -6,8 +6,9 @@
 <!-- Search bar: -->
 {% if request.args.get('q') %}
 <div>
-  <input type="text" value="{{ request.args.get('q') }}" name="q" hx-get="/search" hx-trigger="load, keyup changed delay:500ms" hx-target="#results">
+  <input type="text" value="{{ request.args.get('q') }}" name="q" hx-get="/search" hx-trigger="load, keyup changed delay:500ms" hx-target="#results" hx-vals='{"page": "{{ request.args.get("page") }}"}'>
 </div>
+
 {% else %}
 <div>
   <input type="text" placeholder="Search for a book..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results">
