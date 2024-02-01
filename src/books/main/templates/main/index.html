@@ -1,17 +1,49 @@
 {% extends "base.html" %}
 
+
 {% block content %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var itemElement = document.getElementById('item');
+
+        // Add event listener for 'htmx:afterRequest' event
+        itemElement.addEventListener('htmx:afterRequest', function(event) {
+            // Retrieve the updated value after htmx request
+            var newValue = itemElement.value;
+
+            if (newValue === '') {
+                handleValueChange('Value of "value" attribute is now empty');
+            } else {
+                handleValueChange('Value of "value" attribute changed');
+            }
+        });
+
+        // Initial check for empty value
+        if (itemElement.value === '') {
+            handleValueChange('Initial value of "value" attribute is empty');
+        }
+
+        function handleValueChange(message) {
+            console.log(message);
+            // Do whatever you need with the message
+        }
+    });
+</script>
 <h1> Search for a Book:</h1>
 
 <!-- Search bar: -->
 {% if request.args.get('q') %}
 <div>
-  <input type="text" value="{{ request.args.get('q') }}" name="q" hx-get="/search" hx-trigger="load, keyup changed delay:500ms" hx-target="#results" hx-vals='{"page": "{{ request.args.get("page") }}"}'>
+  <input type="text" value="{{ request.args.get('q') }}" name="q" hx-get="/search" 
+                                                                  hx-trigger="load, keyup changed delay:500ms" hx-target="#results"
+                                                                  hx-vals='{"page": "{{ request.args.get("page") }}"}' id="item">
 </div>
 
 {% else %}
 <div>
-  <input type="text" placeholder="Search for a book..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results">
+  <input type="text" placeholder="Search for a book..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results"
+  id="item">
 </div>
 {% endif %}
 
