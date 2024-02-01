@@ -11,10 +11,11 @@
     <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
 
   </head>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+  <body class=container>
+  <nav class="navbar level" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand level-item has-text-centered">
+      <a class="navbar-item" href="">
+        <img src="{{ url_for('static', filename='book.png') }}">
       </a>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -24,7 +25,7 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarBasicExample" class="navbar-menu level-item has-text-centered">
       <div class="navbar-start">
         <a class="navbar-item">
           Home
@@ -36,7 +37,7 @@
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
-            More
+            Explore 
           </a>
 
           <div class="navbar-dropdown">
@@ -71,7 +72,6 @@
       </div>
     </div>
   </nav>
-  <body>
 
     <!-- Content block -->
     {% block content %}{% endblock %}

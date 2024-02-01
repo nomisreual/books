@@ -1,25 +1,25 @@
 <!-- For rendering the search results requested -->
 {% if results %}
-<table>
-<thead>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Published in</th>
-    </tr>
-</thead>
-
-<tbody>
-{% for result in results %}
-<tr>
-    <td><a href="{{ url_for('main.book_details', id=result.id) }}">{{ result.title }}</a></td>
-    <td><a href="{{ url_for('.author_details', id=result.author_id) }}">{{ result.author.fullname }}</a></td>
-    <td>{{ result.year }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Published in</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for result in results %}
+        <tr>
+            <td><a href="{{ url_for('main.book_details', id=result.id) }}">{{ result.title }}</a></td>
+            <td><a href="{{ url_for('.author_details', id=result.author_id) }}">{{ result.author.fullname }}</a></td>
+            <td>{{ result.year }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% if prev_url %}
 <a href="{{ prev_url }}">Previous</a>
 {% endif %}
