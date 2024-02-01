@@ -12,21 +12,19 @@
             var newValue = itemElement.value;
 
             if (newValue === '') {
-                handleValueChange('Value of "value" attribute is now empty');
+                handleValueChange();
             } else {
-                handleValueChange('Value of "value" attribute changed');
+                handleValueChange();
             }
         });
 
         // Initial check for empty value
         if (itemElement.value === '') {
-            handleValueChange('Initial value of "value" attribute is empty');
+            handleValueChange();
         }
 
-        function handleValueChange(message) {
-            console.log(message);
+        function handleValueChange() {
             itemElement.setAttribute('hx-vals', `{"page": 1}`);
-            // Do whatever you need with the message
         }
     });
 </script>
