@@ -26,7 +26,6 @@ class Book(db.Model):
 
     author_id: Mapped[int] = mapped_column(ForeignKey("authors.id"))
 
-    # below: not an actual table column
     author: Mapped["Author"] = relationship(back_populates="books")
 
     def __repr__(self) -> str:
@@ -41,8 +40,6 @@ class Author(db.Model):
     fullname: Mapped[str] = mapped_column(String(256))
     birthdate: Mapped[datetime]
 
-    # below: these two properties are also not reflected
-    # as 'real' columns in the table
     books: Mapped[List["Book"]] = relationship(
         back_populates="author", cascade="all, delete-orphan"
     )
@@ -63,14 +60,12 @@ class Publisher(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(256))
 
-    # below: these two properties are also not reflected
-    # as 'real' columns in the table
     authors: Mapped[List["Author"]] = relationship(
         secondary=authorpublisher,
         back_populates="publishers"
     )
 
-    address_id: Mapped[int] = mapped_column(ForeignKey("address.id"))
+    address_id: Mapped[int] = mapped_column(ForeignKey("addresses.id"))
 
     address: Mapped["Address"] = relationship(back_populates="publisher",
                                               single_parent=True)
@@ -90,8 +85,8 @@ class Address(db.Model):
     city: Mapped[str] = mapped_column(String(128))
     postal_code: Mapped[str] = mapped_column(String(128))
 
-    address: Mapped["Publisher"] = relationship(back_populates="author",
-                                                cascade="all, delete-orphan")
+    publisher: Mapped["Publisher"] = relationship(back_populates="address",
+                                                  cascade="all, delete-orphan")
 
     def __repr__(self) -> str:
         return f"Address(id={self.id!r})"
