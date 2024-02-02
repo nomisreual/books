@@ -70,8 +70,12 @@ class Publisher(db.Model):
         back_populates="publishers"
     )
 
+    address_id: Mapped[int] = mapped_column(ForeignKey("address.id"))
+
     address: Mapped["Address"] = relationship(back_populates="publisher",
-                                              cascade="all, delete-orphan")
+                                              single_parent=True)
+
+    __table_args__ = (UniqueConstraint("address_id"),)
 
     def __repr__(self) -> str:
         return f"Publisher(id={self.id!r}, \
@@ -86,18 +90,8 @@ class Address(db.Model):
     city: Mapped[str] = mapped_column(String(128))
     postal_code: Mapped[str] = mapped_column(String(128))
 
-    publisher_id: Mapped[int] = mapped_column(ForeignKey("publishers.id"))
-
-    # below: not an actual table column
-    # publisher: Mapped["Publisher"] = relationship(back_populates="address",
-    #                                               single_parent=True)
-    # single_parent: to make clear that this is a 1-to-1 relationship
-
-    # additional setting to make the 1-to-1 relationship clearer
-    publisher: Mapped["Publisher"] = relationship(back_populates="address",
-                                                  single_parent=True)
-
-    __table_args__ = (UniqueConstraint("publisher_id"),)
+    address: Mapped["Publisher"] = relationship(back_populates="author",
+                                                cascade="all, delete-orphan")
 
     def __repr__(self) -> str:
         return f"Address(id={self.id!r})"
