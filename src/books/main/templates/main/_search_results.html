@@ -4,17 +4,17 @@
     <table>
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Published in</th>
+                <th class="pr-4">Title</th>
+                <th class="pr-4">Author</th>
+                <th class="pr-4">Published in</th>
             </tr>
         </thead>
         <tbody>
         {% for result in results %}
         <tr>
-            <td><a href="{{ url_for('main.book_details', id=result.id) }}">{{ result.title }}</a></td>
-            <td><a href="{{ url_for('.author_details', id=result.author_id) }}">{{ result.author.fullname }}</a></td>
-            <td>{{ result.year }}</td>
+            <td class="pr-4"><a href="{{ url_for('main.book_details', id=result.id) }}">{{ result.title }}</a></td>
+            <td class="pr-4"><a href="{{ url_for('.author_details', id=result.author_id) }}">{{ result.author.fullname }}</a></td>
+            <td class="pr-4">{{ result.year }}</td>
         </tr>
         {% endfor %}
         </tbody>
