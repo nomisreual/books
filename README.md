@@ -10,10 +10,12 @@ This is a learning project in which I broaden my knowledge in various topics suc
 This is a simple webpage that allows the user to search for books by, e.g. tile and name of the author. For each book, the user can access additional ressurces. For example, what other books have been authored by this author?
 
 ## Entity Relationship Diagram - how is the data stored?
-![ERD](./book_data.png)
+![ERD_CURRENT](./erd_diagrams/book_current.png)
 
 ## Current design issues:
-- [ ] The database model doesn't establish a relationship between books and publishers.
+- [ ] The database model doesn't establish a relationship between books and publishers. Goal:
+
+![ERD_GOAL](./erd_diagrams/book_goal.png)
 
 ## Planned features:
 - [x] Improve search functionality and performance on landing page.
