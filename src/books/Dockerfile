@@ -10,4 +10,8 @@ COPY data data
 COPY main main
 COPY migrations migrations
 
-COPY app.py extensions.py ./
+COPY app.py extensions.py boot.sh ./
+RUN chmod a+x boot.sh
+
+EXPOSE 5000
+ENTRYPOINT ["./boot.sh"]
