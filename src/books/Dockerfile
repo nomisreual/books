@@ -10,8 +10,7 @@ COPY data data
 COPY main main
 COPY migrations migrations
 
-COPY app.py extensions.py ./
-RUN echo '#!/bin/bash\nflask seeding 1000\nexec gunicorn -b :5000 "app:create_app()"' > boot.sh
+COPY app.py extensions.py boot.sh ./
 RUN chmod a+x boot.sh
 
 EXPOSE 5000
