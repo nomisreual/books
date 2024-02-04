@@ -2,50 +2,12 @@
 
 
 {% block content %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var itemElement = document.getElementById('item');
-
-        // Add event listener for 'htmx:afterRequest' event
-        itemElement.addEventListener('htmx:afterRequest', function(event) {
-            // Retrieve the updated value after htmx request
-            var newValue = itemElement.value;
-
-            if (newValue === '') {
-                handleValueChange();
-            } else {
-                handleValueChange();
-            }
-        });
-
-        // Initial check for empty value
-        if (itemElement.value === '') {
-            handleValueChange();
-        }
-
-        function handleValueChange() {
-            itemElement.setAttribute('hx-vals', `{"page": 1}`);
-        }
-    });
-</script>
-
-
 <h1> Search for a Book:</h1>
 
 <!-- Search bar: -->
-{% if request.args.get('q') %}
 <div>
-  <input type="text" value="{{ request.args.get('q') }}" name="q" hx-get="/search" 
-                                                                  hx-trigger="load, keyup changed delay:500ms" hx-target="#results"
-                                                                  hx-vals='{"page": "{{ request.args.get("page") }}"}' id="item">
+  <input type="text" placeholder="Search for a book..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results" hx-vals='{"page": "1"}'>
 </div>
-
-{% else %}
-<div>
-  <input type="text" placeholder="Search for a book..." name="q" hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results"
-  id="item">
-</div>
-{% endif %}
 
 <hr />
 <div id="results">

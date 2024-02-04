@@ -20,12 +20,13 @@
         </tbody>
     </table>
 </div>
-{% if prev_url %}
-<a href="{{ prev_url }}">Previous</a>
+{% if prev %}
+<a href="" hx-get="/search" hx-trigger="click" hx-target="#results" hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") - 1}'>Previous</a>
 {% endif %}
-{% if next_url %}
-<a href="{{ next_url }}">Next</a>
+{% if next %}
+<a href="" hx-get="/search" hx-trigger="click" hx-target="#results" hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") + 1}'>Next</a>
 {% endif %}
 {% else %}
 <p>We could not find anything. Please change your query.</p>
 {% endif %}
+<!-- hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results" -->
