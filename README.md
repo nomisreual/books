@@ -43,7 +43,7 @@ APIs are currently worked on. Every API is prefixed with `/api`.
     - /books/<int:id> -> grab book by id
 
 
-## Local Set Up
+## Local Set Up - installing dependencies + run manually
 
 Clone the repository and cd into the newly created directory. 
 
@@ -68,6 +68,8 @@ echo PRODUCTION_DATABASE=sqlite:///example.db > ./instance/database.env
 
 The example above sets the production database key to use a SQLite database. You can use any other relational database that is supported by SQLAlchemy.
 
+**IMPORTANT**: the database does not run on SQLite databases. If you want to test the application locally, I recommend using a docker compose set-up or set the *PRODUCTION_DATABASE* environmental variable to point to a PostgreSQL database you have access to.
+
 After that, create the database tables with this command:
 
 ```
@@ -88,3 +90,6 @@ Here, *number* is the number of records you want to create across each table in 
 flask run
 ```
 
+## Local Set Up - run using Docker compose
+
+In the deployment subdirectory you find deployment configurations for the application. Either using a nginx reverse proxy, or plainly exposing port 5000 of the gunicorn server. For testing I reccomend the latter option as it only requires you to create a *.env* file in the same folder as the *docker-compose.yaml* file resides in setting environmental variables for the application database. The deployment version with nginx as reverse proxy requires pointing nginx to valid SSL certificates. You could of course, run this modifying the nginx configuration such that it does not require that.
