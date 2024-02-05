@@ -38,11 +38,10 @@ def author_details(id):
 # API endpoint that returns HTML
 
 
-@main.route('/search')
+@main.route("/search")
 def search():
     q = request.args.get("q")
     page = request.args.get("page", 1, type=int)
-    # if q:
     query = sa.select(Book).join(Author) \
         .where(or_(Book.title.icontains(q),
                    Author.fullname.icontains(q)))
@@ -54,5 +53,17 @@ def search():
                            q=q, page=page,
                            next=results.has_next,
                            prev=results.has_prev)
-    # else:
-    #     return render_template("main/_search_results.html", results=None)
+
+
+@main.route("/suggestions")
+def suggestions():
+    q = request.args.get("q")
+    if len(q) > 0:
+        query = sa.select(Book).join(Author) \
+            .where(or_(Book.title.icontains(q),
+                   Author.fullname.icontains(q)))
+        results = db.session.scalars(query).all()[:5]
+        return render_template("main/_suggestions.html",
+                               results=results)
+    else:
+        return render_template("main/_suggestions.html")
