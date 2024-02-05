@@ -28,7 +28,6 @@ document.addEventListener('htmx:afterRequest', function(evt) {
   let results_table = document.getElementById("results");
 
   if (evt.detail.elt.id == "search_button") {
-    console.log(evt.detail.elt.id);
     suggestions_box.innerHTML = "";
     search_field.value = "";
   };
