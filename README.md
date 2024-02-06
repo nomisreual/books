@@ -7,7 +7,7 @@ This is a learning project in which I broaden my knowledge in various topics suc
 
 ## What can you do with this app?
 
-This is a simple webpage that allows the user to search for books by, e.g. tile and name of the author. For each book, the user can access additional ressurces. For example, what other books have been authored by this author?
+This is a webpage that allows the user to search for books by, e.g. tile and name of the author. For each book, the user can access additional ressources. For example, what other books have been authored by this author?
 
 ## Entity Relationship Diagram - how is the data stored?
 ![ERD_CURRENT](./erd_diagrams/book_current.png)
@@ -23,7 +23,7 @@ This is a simple webpage that allows the user to search for books by, e.g. tile 
     - precision of search (perfect match vs loose match)
 - [x] Redirects to pages with details about a specific book or author.
 - [ ] Filling the database with more real data (in development a database with 10 000 records of dummy data is in use, the live demo currently has 1000 records).
-- [ ] Adding APIs making the data more accessible (*in progress, see down below*). 
+- [x] Adding APIs making the data more accessible.
 - [ ] Improving Docker Compose: make the database persitent and make nginx and the flask app share a volume to facilitate nginx serving static files directly instead of going over the application.
 - [ ] Improve look up time for the search function. Possibly index queried columns and/or adjust the search pattern.
 
@@ -38,12 +38,15 @@ Checked off features already made it into the application.
 
 ## APIs
 
-APIs are currently worked on. Every API is prefixed with `/api`. 
-- Current endpoints:
+- There are two different APIs. One can be found under */api*:
     - /authors -> list all authors
     - /books -> list all books
+    - /publishers -> list all publishers 
+    - /addresses -> list all addresses 
     - /authors/<int:id> -> grab author by id
     - /books/<int:id> -> grab book by id
+
+- A new version can be found under */apis* and it includes documentation (swagger).
 
 
 ## Local Set Up - installing dependencies + run manually
