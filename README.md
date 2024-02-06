@@ -22,13 +22,16 @@ This is a simple webpage that allows the user to search for books by, e.g. tile 
 - [ ] Add filter options for search:
     - precision of search (perfect match vs loose match)
 - [x] Redirects to pages with details about a specific book or author.
-- [ ] Filling the database with more real data (in development a database with 10 000 records of dummy data is in use,
-- [ ] Adding APIs making the data more accessible (*in progress, see down below*). The live demo currently has 500 records due to hosting limitations).
+- [ ] Filling the database with more real data (in development a database with 10 000 records of dummy data is in use, the live demo currently has 1000 records).
+- [ ] Adding APIs making the data more accessible (*in progress, see down below*). 
+- [ ] Improving Docker Compose: make the database persitent and make nginx and the flask app share a volume to facilitate nginx serving static files directly instead of going over the application.
+- [ ] Improve look up time for the search function. Possibly index queried columns and/or adjust the search pattern.
 
 Checked off features already made it into the application.
 
 ## Possible features:
 - User login system to facilitate bookmarking certain books, or follow authors.
+- Try out Docker compose with one nginx instance not only serving as a reverse proxy, but also as a load balancer forwarding requests to multiple instances of the Flask application in the same Docker network.
 
 ## Maybe features:
 - Build a flask extension that eases prepopulating a database with real or fake data. It should also allow for an easy database teardown (deleting all records across tables). [Update: 29.01.2024] So far I created a custom flask command called *flask seeding* to make it easier for this project.
@@ -56,7 +59,7 @@ Create a virtual environment, activate it an install the requirements:
 ```
 python -m venv .venv
 source ./.venv/bin/activate
-pip install -r requirements.txt
+pip install -r ./src/books/requirements.txt
 ```
 
 Out of the box, this application runs off of an on-disk SQLite database. To use another database, do the following: create a file called *database.env* inside of the *instance* folder and include a line setting *PRODUCTION_DATABASE". The *instance* is created whenever the first *flask* command is called. Alternatively, just create it to make sure you use your database and proceed with the next steps afterwards:
@@ -68,7 +71,7 @@ echo PRODUCTION_DATABASE=sqlite:///example.db > ./instance/database.env
 
 The example above sets the production database key to use a SQLite database. You can use any other relational database that is supported by SQLAlchemy.
 
-**IMPORTANT**: the database does not run on SQLite databases. If you want to test the application locally, I recommend using a docker compose set-up or set the *PRODUCTION_DATABASE* environmental variable to point to a PostgreSQL database you have access to.
+**IMPORTANT**: the database does not run on an SQLite databases. If you want to test the application locally, I recommend using a docker compose set-up or set the *PRODUCTION_DATABASE* environmental variable to point to a PostgreSQL database you have access to.
 
 After that, create the database tables with this command:
 
