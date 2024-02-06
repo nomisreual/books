@@ -7,7 +7,7 @@ This is a learning project in which I broaden my knowledge in various topics suc
 
 ## What can you do with this app?
 
-This is a webpage that allows the user to search for books by, e.g. tile and name of the author. For each book, the user can access additional ressources. For example, what other books have been authored by this author?
+This is a webpage that allows the user to search for books by, e.g. title and name of the author. For each book, the user can access additional ressources. For example, what other books have been authored by this author?
 
 ## Entity Relationship Diagram - how is the data stored?
 ![ERD_CURRENT](./erd_diagrams/book_current.png)
