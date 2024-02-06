@@ -1,16 +1,26 @@
-from flask import Blueprint
-from flask_restx import Resource, Namespace, fields
-from extensions import api
+from flask_restx import Namespace, Resource, fields
+
 from http import HTTPStatus
 
 from data.models import Book, Author, Publisher
 
+api = Namespace("book_data", description="Data on books,\
+                 authors and publishers.")
 
-api_bp = Blueprint("apis", __name__, url_prefix="/apis")
-api.init_app(api_bp)
 
-ns = Namespace("restx")
-api.add_namespace(ns)
+# from flask import Blueprint
+# from flask_restx import Resource, Namespace, fields
+# from extensions import api
+# from http import HTTPStatus
+#
+
+
+# api_bp = Blueprint("apis", __name__, url_prefix="/apis")
+# api.init_app(api_bp)
+#
+#
+# ns = Namespace("restx")
+# api.add_namespace(ns)
 
 address_model = api.model("Address", {
     "id": fields.Integer,
@@ -70,19 +80,19 @@ publishers_model_all = api.model("Publishers", {
 })
 
 
-@ns.route("/books")
+@api.route("/books")
 class BooksAPI(Resource):
     @api.response(HTTPStatus.OK.value, "Success")
-    @ns.marshal_list_with(book_model_full)
+    @api.marshal_list_with(book_model_full)
     def get(self):
         return Book.query.all()
 
 
-@ns.route("/books/<int:id>")
+@api.route("/books/<int:id>")
 class BookAPI(Resource):
     @api.response(HTTPStatus.OK.value, "Success")
     @api.response(HTTPStatus.BAD_REQUEST.value, "Not Found")
-    @ns.marshal_with(book_model_full)
+    @api.marshal_with(book_model_full)
     def get(self, id):
         book = Book.query.get(id)
         if book:
@@ -91,19 +101,19 @@ class BookAPI(Resource):
             return api.abort(HTTPStatus.BAD_REQUEST.value, "Not Found")
 
 
-@ns.route("/authors")
+@api.route("/authors")
 class AuthorsAPI(Resource):
     @api.response(HTTPStatus.OK.value, "Success")
-    @ns.marshal_list_with(author_model_full)
+    @api.marshal_list_with(author_model_full)
     def get(self):
         return Author.query.all()
 
 
-@ns.route("/authors/<int:id>")
+@api.route("/authors/<int:id>")
 class AuthorApi(Resource):
     @api.response(HTTPStatus.OK.value, "Success")
     @api.response(HTTPStatus.BAD_REQUEST.value, "Not Found")
-    @ns.marshal_with(author_model_full)
+    @api.marshal_with(author_model_full)
     def get(self, id):
         author = Author.query.get(id)
         if author:
@@ -112,19 +122,19 @@ class AuthorApi(Resource):
             return api.abort(HTTPStatus.BAD_REQUEST.value, "Not Found")
 
 
-@ns.route("/publishers")
+@api.route("/publishers")
 class PublishersAPI(Resource):
     @api.response(HTTPStatus.OK.value, "Success")
-    @ns.marshal_list_with(publishers_model_all)
+    @api.marshal_list_with(publishers_model_all)
     def get(self):
         return Publisher.query.all()
 
 
-@ns.route("/publishers/<int:id>")
+@api.route("/publishers/<int:id>")
 class PublisherAPI(Resource):
     @api.response(HTTPStatus.OK.value, "Success")
     @api.response(HTTPStatus.BAD_REQUEST.value, "Not Found")
-    @ns.marshal_with(publishers_model_all)
+    @api.marshal_with(publishers_model_all)
     def get(self, id):
         publisher = Publisher.query.get(id)
         if publisher:
