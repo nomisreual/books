@@ -1,42 +1,50 @@
-{% extends "base.html" %}
-
-
-{% block content %}
-<h1> Search for a Book:</h1>
+{% extends "base.html" %} {% block content %}
+<h1>Search for a Book:</h1>
 
 <!-- Search bar: -->
 <div>
-  <input type="text" placeholder="Search for a book..." name="q" hx-get="/suggestions" hx-trigger="keyup changed delay:500ms" hx-target="#suggestions" autocomplete="off"
-                                                                                                                              id="search_field">
-  <button type="button" hx-include="[name='q']" hx-get="/search" hx-target="#results" hx-vals='{"page": "1"}' id="search_button" hx-trigger="click, keydown[altKey&&shiftKey&&key=='D'] from:body">Search</button>
-
+  <input
+    type="text"
+    placeholder="Search for a book..."
+    name="q"
+    hx-get="/suggestions"
+    hx-trigger="keyup changed delay:500ms"
+    hx-target="#suggestions"
+    autocomplete="off"
+    id="search_field"
+  />
+  <button
+    type="button"
+    hx-include="[name='q']"
+    hx-get="/search"
+    hx-target="#results"
+    hx-vals='{"page": "1"}'
+    id="search_button"
+    hx-trigger="click, keydown[altKey&&shiftKey&&key=='D'] from:body"
+  >
+    Search
+  </button>
 </div>
 
-<div id="suggestions">
-</div>
+<div id="suggestions"></div>
 
 <hr />
-<div id="results">
-</div>
+<div id="results"></div>
 
 <script>
+  document.addEventListener("htmx:afterRequest", function (evt) {
+    let suggestions_box = document.getElementById("suggestions");
+    let search_field = document.getElementById("search_field");
+    let results_table = document.getElementById("results");
 
-document.addEventListener('htmx:afterRequest', function(evt) {
-
-  let suggestions_box = document.getElementById("suggestions");
-  let search_field = document.getElementById("search_field");
-  let results_table = document.getElementById("results");
-
-  if (evt.detail.elt.id == "search_button") {
-    suggestions_box.innerHTML = "";
-    search_field.value = "";
-  };
-  if (evt.detail.elt.id == "search_field") {
-    results_table.innerHTML = "";
-  }
-
-});
-
+    if (evt.detail.elt.id == "search_button") {
+      suggestions_box.innerHTML = "";
+      search_field.value = "";
+    }
+    if (evt.detail.elt.id == "search_field") {
+      results_table.innerHTML = "";
+    }
+  });
 </script>
 
 {% endblock %}

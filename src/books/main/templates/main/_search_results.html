@@ -1,32 +1,52 @@
 <!-- For rendering the search results requested -->
 {% if results %}
 <div>
-    <table>
-        <thead>
-            <tr>
-                <th class="pr-4">Title</th>
-                <th class="pr-4">Author</th>
-                <th class="pr-4">Published in</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for result in results %}
-        <tr>
-            <td class="pr-4"><a href="{{ url_for('main.book_details', id=result.id) }}">{{ result.title }}</a></td>
-            <td class="pr-4"><a href="{{ url_for('.author_details', id=result.author_id) }}">{{ result.author.fullname }}</a></td>
-            <td class="pr-4">{{ result.year }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+  <table>
+    <thead>
+      <tr>
+        <th class="pr-4">Title</th>
+        <th class="pr-4">Author</th>
+        <th class="pr-4">Published in</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for result in results %}
+      <tr>
+        <td class="pr-4">
+          <a href="{{ url_for('main.book_details', id=result.id) }}"
+            >{{ result.title }}</a
+          >
+        </td>
+        <td class="pr-4">
+          <a href="{{ url_for('.author_details', id=result.author_id) }}"
+            >{{ result.author.fullname }}</a
+          >
+        </td>
+        <td class="pr-4">{{ result.year }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% if prev %}
-<a href="" hx-get="/search" hx-trigger="click" hx-target="#results" hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") - 1}'>Previous</a>
-{% endif %}
-{% if next %}
-<a href="" hx-get="/search" hx-trigger="click" hx-target="#results" hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") + 1}'>Next</a>
-{% endif %}
-{% else %}
+<a
+  href=""
+  hx-get="/search"
+  hx-trigger="click"
+  hx-target="#results"
+  hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") - 1}'
+  >Previous</a
+>
+{% endif %} {% if next %}
+<a
+  href=""
+  hx-get="/search"
+  hx-trigger="click"
+  hx-target="#results"
+  hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") + 1}'
+  >Next</a
+>
+{% endif %} {% else %}
 <p>We could not find anything. Please change your query.</p>
 {% endif %}
 <!-- hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results" -->

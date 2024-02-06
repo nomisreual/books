@@ -1,27 +1,24 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <h1>{{ result.fullname }}</h1>
 <p>Birthdate: {{ result.birthdate.date() }}</p>
 <h2>Books written by this author:</h2>
 <table>
   <thead>
-      <tr>
-          <th>Title</th>
-          <th>Published in</th>
-          <th>ISBN</th>
-      </tr>
+    <tr>
+      <th>Title</th>
+      <th>Published in</th>
+      <th>ISBN</th>
+    </tr>
   </thead>
 
   <tbody>
-  {% for book in result.books %}
-  <tr>
+    {% for book in result.books %}
+    <tr>
       <td>{{ book.title }}</td>
       <td>{{ book.year }}</td>
       <td>{{ book.isbn }}</td>
-  </tr>
-  {% endfor %}
+    </tr>
+    {% endfor %}
   </tbody>
 </table>
 {% endblock %}
-
