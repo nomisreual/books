@@ -20,12 +20,12 @@
     hx-target="#results"
     hx-vals='{"page": "1"}'
     id="search_button"
-    hx-trigger="click, keydown[altKey&&shiftKey&&key=='D'] from:body"
+    hx-trigger="click, keyup[keyCode==13] from:body"
   >
     Search
   </button>
 </div>
-
+<!--  -->
 <div id="suggestions"></div>
 
 <hr />
@@ -34,12 +34,10 @@
 <script>
   document.addEventListener("htmx:afterRequest", function (evt) {
     let suggestions_box = document.getElementById("suggestions");
-    let search_field = document.getElementById("search_field");
     let results_table = document.getElementById("results");
 
     if (evt.detail.elt.id == "search_button") {
       suggestions_box.innerHTML = "";
-      search_field.value = "";
     }
     if (evt.detail.elt.id == "search_field") {
       results_table.innerHTML = "";

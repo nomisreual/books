@@ -1,6 +1,17 @@
+<input
+  type="text"
+  placeholder="Search for a book..."
+  name="q"
+  hx-get="/suggestions"
+  hx-trigger="keyup changed delay:500ms"
+  hx-target="#suggestions"
+  hx-swap-oob="true"
+  autocomplete="off"
+  id="search_field"
+/>
 <!-- For rendering the search results requested -->
-{% if results %}
 <div>
+  {% if results %}
   <table>
     <thead>
       <tr>
@@ -27,26 +38,25 @@
       {% endfor %}
     </tbody>
   </table>
+  {% if prev %}
+  <a
+    href=""
+    hx-get="/search"
+    hx-trigger="click"
+    hx-target="#results"
+    hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") - 1}'
+    >Previous</a
+  >
+  {% endif %} {% if next %}
+  <a
+    href=""
+    hx-get="/search"
+    hx-trigger="click"
+    hx-target="#results"
+    hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") + 1}'
+    >Next</a
+  >
+  {% endif %} {% else %}
+  <p>We could not find anything. Please change your query.</p>
+  {% endif %}
 </div>
-{% if prev %}
-<a
-  href=""
-  hx-get="/search"
-  hx-trigger="click"
-  hx-target="#results"
-  hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") - 1}'
-  >Previous</a
->
-{% endif %} {% if next %}
-<a
-  href=""
-  hx-get="/search"
-  hx-trigger="click"
-  hx-target="#results"
-  hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") + 1}'
-  >Next</a
->
-{% endif %} {% else %}
-<p>We could not find anything. Please change your query.</p>
-{% endif %}
-<!-- hx-get="/search" hx-trigger="keyup changed delay:500ms" hx-target="#results" -->
