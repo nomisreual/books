@@ -3,7 +3,6 @@ FROM python:slim
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-COPY api api
 COPY apis apis
 COPY app app
 COPY data data
@@ -13,7 +12,7 @@ COPY migrations migrations
 COPY app.py extensions.py ./
 RUN echo '#!/bin/bash' > /boot.sh \
     && echo 'while true; do' >> boot.sh \
-    && echo '    flask seeding 1000' >> boot.sh \
+    && echo '    flask seeding 10000' >> boot.sh \
     && echo '    if [[ "$?" == "0" ]]; then' >> boot.sh \
     && echo '        break' >> /boot.sh \
     && echo '    fi' >> /boot.sh \

@@ -1,14 +1,13 @@
 from flask import Blueprint
 from flask_restx import Api
 
-# from .namespace_address import api as address
-# from .namespace_author import api as author
-# from .namespace_book import api as book
-# from .namespace_publisher import api as publisher
-from .routes import api as book_data
+from .namespace_1 import api as book_data
 
+# Create a blueprint:
 apis_bp = Blueprint("apis", __name__, url_prefix="/apis")
 
+# Create the restx Api instance. Here passing in the blueprint,
+# rather than the application model.
 api = Api(
     app=apis_bp,
     title="Get from the books database.",
@@ -17,8 +16,5 @@ api = Api(
                  and publishers."
 )
 
-# api.add_namespace(address)
-# api.add_namespace(author)
-# api.add_namespace(book)
-# api.add_namespace(publisher)
+# Add namespaces:
 api.add_namespace(book_data)
