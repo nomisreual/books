@@ -4,6 +4,7 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 COPY api api
+COPY apis apis
 COPY app app
 COPY data data
 COPY main main
