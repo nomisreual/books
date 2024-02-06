@@ -4,7 +4,8 @@ import dotenv
 import click
 from data.seeding import seed_database
 from main.routes import main
-from api.routes import api
+from apis.routes import api_bp
+# from api.routes import api
 from extensions import db, migrate
 
 
@@ -47,7 +48,8 @@ def create_app(test_config=None):
 
     # Register blueprints
     app.register_blueprint(main)
-    app.register_blueprint(api)
+    app.register_blueprint(api_bp)
+    # app.register_blueprint(api)
 
     # Database
     db.init_app(app)
