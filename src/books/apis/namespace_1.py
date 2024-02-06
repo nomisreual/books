@@ -4,7 +4,7 @@ from http import HTTPStatus
 
 from data.models import Book, Author, Publisher
 
-api = Namespace("book_data", description="Data on books,\
+api = Namespace(name="", description="Data on books,\
                  authors and publishers.")
 
 # Defining various models:
