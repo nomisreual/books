@@ -15,4 +15,6 @@ jobs:
       run: docker build . --file Dockerfile --tag nomisreual/books:latest 
       working-directory: src/books
     - name: publish
-      run: docker push nomisreual/books:latest
+      run: |
+        docker login -u nomisreual -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        docker push nomisreual/books:latest
