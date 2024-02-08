@@ -12,10 +12,9 @@ jobs:
 
     steps:
     - name: Checkout repository
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
+      with:
+        path: src/books
     
-    -name: List files in the directory
-      run: ls -l
-
     - name: Build the Docker image
-      run: docker build . --file ./src/books/Dockerfile --tag books:latest
+      run: docker build -t books:latest .
