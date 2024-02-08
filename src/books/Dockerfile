@@ -10,7 +10,7 @@ COPY main main
 COPY migrations migrations
 
 COPY app.py /
-# COPY extensions.py /
+COPY extensions.py /
 RUN echo '#!/bin/bash' > /boot.sh \
     && echo 'while true; do' >> boot.sh \
     && echo '    flask seeding 10000' >> boot.sh \

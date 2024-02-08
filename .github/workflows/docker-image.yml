@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
     - uses: actions/checkout@v3
+    
+    -name: List files in the directory
+      run: ls -l
+
     - name: Build the Docker image
       run: docker build . --file ./src/books/Dockerfile --tag books:latest
