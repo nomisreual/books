@@ -12,9 +12,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: cd 
-      run: cd ./src/books 
-    - name: pwd
-      run: pwd
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag books:latest
+      run: docker build . --file ./src/books/Dockerfile --tag books:latest
