@@ -17,7 +17,7 @@
   <body class=container>
   <nav class="navbar level" role="navigation" aria-label="main navigation">
     <div class="navbar-brand level-item has-text-centered">
-      <a class="navbar-item" href="">
+      <a class="navbar-item" href="{{ url_for('main.index') }}">
         <img src="{{ url_for('static', filename='book.png') }}">
       </a>
 
@@ -67,7 +67,7 @@
             <a class="button is-primary">
               <strong>Sign up</strong>
             </a>
-            <a class="button is-light">
+            <a class="button is-light" href="{{ url_for('auth.login') }}">
               Log in
             </a>
           </div>
@@ -75,6 +75,17 @@
       </div>
     </div>
   </nav>
+  <div>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      {% endwith %} </nav>
+  </div>
 
     <!-- Content block -->
     {% block content %}{% endblock %}
