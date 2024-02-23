@@ -9,6 +9,8 @@ auth = Blueprint("auth", __name__, template_folder="templates")
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        flash(f"Login requested for user {form.username.data}, remember me {form.remember_me.data}")
+        flash(
+            f"Login requested for user {form.username.data} "
+            f"(remember me {form.remember_me.data})")
         return redirect(url_for("main.index"))
     return render_template("auth/login.html", title="Sign In", form=form)
