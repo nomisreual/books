@@ -5,6 +5,7 @@ RUN pip install -r requirements.txt
 
 COPY apis apis
 COPY app app
+COPY auth auth
 COPY data data
 COPY main main
 COPY migrations migrations
