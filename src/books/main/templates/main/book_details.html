@@ -1,6 +1,8 @@
 {% extends "base.html" %} {% block content %}
+<section class="section">
 <h1>{{ result.title }}</h1>
 <p>Published in: {{ result.year }}</p>
 <p>Author: {{ result.author.fullname }}</p>
 <p>ISBN: {{ result.isbn }}</p>
+</section>
 {% endblock %}

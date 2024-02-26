@@ -1,18 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Sign In</h1>
+    <h1 class="title has-text-centered">Sign In</h1>
+    <div class="level">
+    <div class="level-item">
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
+            {{ form.username.label(class="form") }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <p class="help is-danger">{{ error }}</p>
+            {% endfor %}
         </p>
         <p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}
+            {% for error in form.password.errors %}
+            <p class="help is-danger">{{ error }}</p>
+            {% endfor %}
         </p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
     </form>
+    </div>
+    </div>
+    <div class="level">
+    <div class="level-item">
+        <p>New User? <a href="{{ url_for("auth.register") }}"> Click to Register!</a></p>
+    </div>
+    </div>
 {% endblock %}

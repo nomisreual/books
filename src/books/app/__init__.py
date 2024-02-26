@@ -9,7 +9,7 @@ from main.routes import main
 from apis import apis_bp
 from auth.routes import auth
 
-from extensions import db, migrate
+from extensions import db, migrate, login
 
 
 def create_app(test_config=None):
@@ -57,5 +57,8 @@ def create_app(test_config=None):
     # Database
     db.init_app(app)
     migrate.init_app(app, db)
+
+    # Login Manager
+    login.init_app(app)
 
     return app

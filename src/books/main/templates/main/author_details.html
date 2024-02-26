@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% block content %}
+<section class="section">
 <h1>{{ result.fullname }}</h1>
 <p>Birthdate: {{ result.birthdate.date() }}</p>
 <h2>Books written by this author:</h2>
@@ -21,4 +22,5 @@
     {% endfor %}
   </tbody>
 </table>
+</section>
 {% endblock %}
