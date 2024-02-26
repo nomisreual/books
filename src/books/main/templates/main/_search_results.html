@@ -1,5 +1,6 @@
 <input
   type="text"
+  class="input"
   placeholder="Search for a book..."
   name="q"
   hx-get="/suggestions"
@@ -12,6 +13,10 @@
 <!-- For rendering the search results requested -->
 <div>
   {% if results %}
+  <div class="level">
+    <div class="level-item">Query</div>
+    <div class="level-item">Results: ...</div>
+  </div>
   <table>
     <thead>
       <tr>
@@ -38,25 +43,32 @@
       {% endfor %}
     </tbody>
   </table>
-  {% if prev %}
-  <a
-    href=""
-    hx-get="/search"
-    hx-trigger="click"
-    hx-target="#results"
-    hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") - 1}'
-    >Previous</a
-  >
-  {% endif %} {% if next %}
-  <a
-    href=""
-    hx-get="/search"
-    hx-trigger="click"
-    hx-target="#results"
-    hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") + 1}'
-    >Next</a
-  >
-  {% endif %} {% else %}
+
+  <section class="section">
+    <nav class="pagination" role="navigation" aria-label="pagination">
+      {% if prev %}
+      <a
+        class="pagination-previous"
+        href=""
+        hx-get="/search"
+        hx-trigger="click"
+        hx-target="#results"
+        hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") - 1}'
+        >Previous</a
+      >
+      {% endif %} {% if next %}
+      <a
+        class="pagination-next"
+        href=""
+        hx-get="/search"
+        hx-trigger="click"
+        hx-target="#results"
+        hx-vals='js:{"q": "{{ request.args.get("q") }}", "page": parseInt("{{ request.args.get("page") }}") + 1}'
+        >Next</a
+      >
+      {% endif %} {% else %}
+    </nav>
+  </section>
   <p>We could not find anything. Please change your query.</p>
   {% endif %}
 </div>

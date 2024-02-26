@@ -1,35 +1,62 @@
 {% extends "base.html" %} {% block content %}
-<h1>Search for a Book:</h1>
+<section class="hero">
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="hero-body">
+        <div class="level">
+          <div class="level-item">
+            <p class="title">Search for a book:</p>
+          </div>
+        </div>
 
-<!-- Search bar: -->
-<div>
-  <input
-    type="text"
-    placeholder="Search for a book..."
-    name="q"
-    hx-get="/suggestions"
-    hx-trigger="keyup changed delay:500ms"
-    hx-target="#suggestions"
-    autocomplete="off"
-    id="search_field"
-  />
-  <button
-    type="button"
-    hx-include="[name='q']"
-    hx-get="/search"
-    hx-target="#results"
-    hx-vals='{"page": "1"}'
-    id="search_button"
-    hx-trigger="click, keyup[keyCode==13] from:body"
-  >
-    Search
-  </button>
-</div>
-<!--  -->
-<div id="suggestions"></div>
-
-<hr />
-<div id="results"></div>
+        <div class="level">
+          <div class="level-item">
+            <div class="field has-addons">
+              <p class="control">
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="enter title or author"
+                  name="q"
+                  hx-get="/suggestions"
+                  hx-trigger="keyup changed delay:500ms"
+                  hx-target="#suggestions"
+                  autocomplete="off"
+                  id="search_field"
+                />
+              </p>
+              <p class="control">
+                <button
+                  class="button"
+                  hx-include="[name='q']"
+                  hx-get="/search"
+                  hx-target="#results"
+                  hx-vals='{"page": "1"}'
+                  id="search_button"
+                  hx-trigger="click, keyup[keyCode==13] from:body"
+                >
+                  Search
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="level">
+          <div class="column">
+            <div class="level-item" id="suggestions"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container">
+  <div class="level">
+    <div class="level-item">
+      <div id="results"></div>
+    </div>
+  </div>
+</section>
 
 <script>
   document.addEventListener("htmx:afterRequest", function (evt) {

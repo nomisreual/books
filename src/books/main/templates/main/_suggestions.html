@@ -1,17 +1,13 @@
-{% if results %} {% for result in results %}
-<table>
-  <tr>
-    <td class="pr-4">
-      <a href="{{ url_for('main.book_details', id=result.id) }}"
-        >{{ result.title }}</a
-      >
-    </td>
-    <td class="pr-4">
-      <a href="{{ url_for('.author_details', id=result.author_id) }}"
-        >{{ result.author.fullname }}</a
-      >
-    </td>
-    <td class="pr-4">{{ result.year }}</td>
-  </tr>
+{% if results %}
+<table class="table">
+{% for result in results %}
+  <tbody>
+    <tr>
+      <td>
+        <a href="{{ url_for('main.book_details', id=result.id) }}">{{ result.title }}</a>
+      </td>
+    </tr>
+  </tbody>
+{% endfor %} 
 </table>
-{% endfor %} {% endif %}
+{% endif %}
