@@ -1,8 +1,19 @@
 {% extends "base.html" %} {% block content %}
 <section class="section">
-<h1>{{ result.title }}</h1>
-<p>Published in: {{ result.year }}</p>
-<p>Author: {{ result.author.fullname }}</p>
-<p>ISBN: {{ result.isbn }}</p>
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">{{ result.title }} ({{ result.year }})</p>
+          <p class="subtitle">by {{ result.author.fullname }}</p>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="hero-body">
+          <p class="subtitle">ISBN: {{ result.isbn }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 {% endblock %}

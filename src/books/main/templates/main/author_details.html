@@ -1,26 +1,37 @@
 {% extends "base.html" %} {% block content %}
 <section class="section">
-<h1>{{ result.fullname }}</h1>
-<p>Birthdate: {{ result.birthdate.date() }}</p>
-<h2>Books written by this author:</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Published in</th>
-      <th>ISBN</th>
-    </tr>
-  </thead>
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">{{ result.fullname }}</p>
+          <p class="subtitle"> born in {{ result.birthdate.date().year }}</p>
+        </div>
+      </div>
+      <div class="block pt-4">
+        <p class="title is-4">Books written by this author:</p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Published in</th>
+                <th>ISBN</th>
+              </tr>
+            </thead>
 
-  <tbody>
-    {% for book in result.books %}
-    <tr>
-      <td>{{ book.title }}</td>
-      <td>{{ book.year }}</td>
-      <td>{{ book.isbn }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+            <tbody>
+              {% for book in result.books %}
+              <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.year }}</td>
+                <td>{{ book.isbn }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+
 </section>
 {% endblock %}
