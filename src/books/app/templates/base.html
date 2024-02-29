@@ -54,6 +54,12 @@
           });
         });
       });
+
+      function removeFlashMessage(button) {
+        var flashDiv = button.parentNode;
+
+        flashDiv.remove();
+      }
     </script>
   </head>
   <body>
@@ -104,7 +110,7 @@
         {% if messages %}
           {% for category, message in messages %}
           <div class="notification is-{{ category }}">
-              <button class="delete"></button>
+              <button class="delete" onclick="removeFlashMessage(this)"></button>
                 {{ message }}
           </div>
           {% endfor %}
