@@ -61,7 +61,10 @@
       <section class="section py-0">
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
-            <a href="{{ url_for('main.index') }}" class="navbar-item">Home</a>
+            <a class="navbar-item" href="{{ url_for('main.index') }}">
+              <img src="{{ url_for('static', filename='book.png') }}">
+            </a>
+            <!-- <a href="{{ url_for('main.index') }}" class="navbar-item">Home</a> -->
             <a
               role="button"
               class="navbar-burger"
