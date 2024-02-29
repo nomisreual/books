@@ -51,6 +51,7 @@ def search():
 
     return render_template("main/_search_results.html",
                            results=results.items,
+                           total=results.total,
                            q=q, page=page,
                            next=results.has_next,
                            prev=results.has_prev)
