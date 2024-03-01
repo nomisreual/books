@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block content %}
+<section class="section">
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="hero is-primary">
+        <div class="hero-body">
+	  <p class="title">Hello, {{ user.username }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

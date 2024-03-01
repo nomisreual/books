@@ -6,8 +6,9 @@ import click
 from data.seeding import seed_database
 
 from main.routes import main
-from apis import apis_bp
 from auth.routes import auth
+from user.routes import user
+from apis import apis_bp
 
 from extensions import db, migrate, login
 
@@ -51,8 +52,9 @@ def create_app(test_config=None):
 
     # Register blueprints
     app.register_blueprint(main)
-    app.register_blueprint(apis_bp)
     app.register_blueprint(auth)
+    app.register_blueprint(user)
+    app.register_blueprint(apis_bp)
 
     # Database
     db.init_app(app)

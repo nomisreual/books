@@ -70,7 +70,6 @@
             <a class="navbar-item" href="{{ url_for('main.index') }}">
               <img src="{{ url_for('static', filename='book.png') }}">
             </a>
-            <!-- <a href="{{ url_for('main.index') }}" class="navbar-item">Home</a> -->
             <a
               role="button"
               class="navbar-burger"
@@ -97,6 +96,9 @@
                   </a>
                   <a href="{{ url_for('auth.login') }}" class="button is-light">Log in</a>
                   {% else %}
+                  <a href="{{ url_for('user.profile', username=current_user.username) }}" class="button is-primary">
+                    <strong>Profile</strong>
+                  </a>
                   <a href="{{ url_for('auth.logout') }}" class="button is-light">Log out</a>
                   {% endif %}
                 </div>

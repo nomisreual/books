@@ -11,6 +11,7 @@ api = Api()
 def login_manager():
     login = LoginManager()
     login.login_view = "auth.login"
+    login.login_message_category = "danger"
 
     return login
 
