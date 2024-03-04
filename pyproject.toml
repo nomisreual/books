@@ -18,6 +18,9 @@ flask-wtf = "^1.2.1"
 psycopg2-binary = "^2.9.9"
 
 
+[tool.poetry.group.test.dependencies]
+pytest = "^8.0.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
