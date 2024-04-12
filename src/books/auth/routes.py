@@ -1,11 +1,12 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, request
-from .forms import LoginForm, RegistrationForm
-from flask_login import current_user, login_user, logout_user
-import sqlalchemy as sa
-from extensions import db
-from data.models import User
 from urllib.parse import urlsplit
 
+import sqlalchemy as sa
+from data.models import User
+from extensions import db
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_user, logout_user
+
+from .forms import LoginForm, RegistrationForm
 
 auth = Blueprint("auth", __name__, template_folder="templates")
 
@@ -17,10 +18,10 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = db.session.scalar(
-            sa.select(User).where(User.username == form.username.data))
+            sa.select(User).where(User.username == form.username.data)
+        )
         if user is None or not user.check_password(form.password.data):
-            flash("Invalid username or password.",
-                  "danger")
+            flash("Invalid username or password.", "danger")
             return redirect(url_for("auth.login"))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get("next")
@@ -46,7 +47,6 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash("Congratulations, you are now a registered user!",
-              "success")
+        flash("Congratulations, you are now a registered user!", "success")
         return redirect(url_for("auth.login"))
     return render_template("auth/register.html", title="Register", form=form)
