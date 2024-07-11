@@ -8,6 +8,7 @@ COPY app app
 COPY auth auth
 COPY data data
 COPY main main
+COPY user user
 COPY migrations migrations
 
 COPY app.py /
